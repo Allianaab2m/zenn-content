@@ -8,7 +8,7 @@ published: false
 
 ## 前置き
 
-DiscordのBotをTypeScriptで書く記事が少なくて難儀したので，自分なりに記事を書いてみることにしました。
+DiscordのBotをTypeScriptで開発する記事が少なくて難儀したので，自分なりに記事を書いてみることにしました。
 
 こういった記事を書くのは初めてなので，拙い文章ではありますが，誰かの助けになれば幸いです。
 
@@ -16,7 +16,7 @@ DiscordのBotをTypeScriptで書く記事が少なくて難儀したので，自
 
 - Discord.jsを使用したBot開発の経験がある人
 
-今回の記事の主軸はTypeScriptを使ってBot開発をするという点にあるため，Bot開発やNode.jsなどに関する基本的な説明はところどころ端折っています。
+今回の記事の主軸はTypeScriptを使ってBot開発をするという点にあるため，**Bot開発やNode.jsなどに関する基本的な説明はところどころ端折っています**。
 
 予めご了承ください。
 
@@ -28,7 +28,7 @@ DiscordのBotをTypeScriptで書く記事が少なくて難儀したので，自
 | Discord.js | v13.3.1 |
 | Visual Studio Code | v1.62.3 |
 
-エディタは好きなものを使っても構いませんが，VSCodeはTypeScript補完に関する機能が非常に強力[^1]なので，TypeScriptを書く際にはVSCodeをオススメします。
+エディタは好きなものを使っても構いませんが，**Visual Studio CodeはTypeScript補完に関する機能が非常に強力**[^1]なので，TypeScriptを書く際にはVisual Studio Codeをオススメします。
 
 ## 手順
 
@@ -64,11 +64,11 @@ Version 4.5.2
 npx tsc --init
 ```
 
-`tsconfig.json`というファイルが新しく出来ているはずです。開いてみてください。
+`tsconfig.json`というファイルが新しく出来ているはずです。お好きなエディタで開いてみてください。
 
 中身の殆どがコメントアウトされていますね。
 
-以下の行を探し出し，コメントを外してから書いてある通りに書き換えてください。
+以下の行を探し出し，コメントを外してから**書いてある通りに書き換えてください**。
 
 ```json
 {
@@ -78,7 +78,7 @@ npx tsc --init
 }
 ```
 
-これはトランスパイルを行ったときに生成されたJavaScriptコードを出力するディレクトリを指定しています。
+これはトランスコンパイルを行ったときに生成されたJavaScriptコードを出力するディレクトリを指定しています。
 
 ### ESLint
 
@@ -94,13 +94,13 @@ npx eslint --init
 | What type of modules does your project use?(どのタイプのモジュールを使用しますか？) | JavaScript modules (import/export) |
 | Which framework does your project use?(フレームワークを使用しますか？) | None of these |
 | Does your project use TypeScript?(TypeScriptを使用しますか？) | Yes |
-| Where does your code run?(コードをどの環境で実行しますか？) | Browser, Node(aキーを押すと両方選択される |
+| Where does your code run?(コードをどの環境で実行しますか？) | Browser, Node(aキーを押すと両方選択される) |
 | How would you like to define a style for your project?(コードのスタイルはどのように定義しますか？) | Use a popular style guide |
 | Which style guide do you want to follow?(どのスタイルガイドに従いますか？) | Standard |
 | What format do you want your config file to be in?(configファイルはどのよう形式で保存しますか？) | JavaScript |
 | Would you like to install then now with npm?(npmを使用して今必要なパッケージをインストールしますか？) | Yes |
 
-また，VSCodeのESLint拡張機能も同時にインストールしておきます。
+また，**Visual Stuido Codeの場合はESLint拡張機能をインストールしておきましょう**。
 
 https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 
@@ -116,7 +116,7 @@ package.jsonにnpmスクリプトを指定します。
 }
 ```
 
-最後に，現在のフォルダの中に `src`と `build`フォルダ，そして  `.env`ファイルを新しく作ってください。以下のような状態になっているでしょうか。
+最後に，現在のディレクトリの中に `src`と `build`フォルダ，そして  `.env`ファイルを新しく作ってください。以下のような状態になっているでしょうか。
 
 ```bash:現在のディレクトリの様子
 📁 node_modules
@@ -160,7 +160,7 @@ client.on('messageCreate', async (message: Message) => {
 client.login(process.env.TOKEN)
 ```
 
-エラーが出ている行がありますが，ひとまずトランスパイルしましょう。
+エラーが出ている行がありますが，ひとまずトランスコンパイルしましょう。
 
 ```bash
 npm run compile
@@ -175,9 +175,9 @@ src/main.ts:12:17 - error TS2531: Object is possibly 'null'.
 Found 1 error.
 ```
 
-エラーの内容は， `client.user` がnullかもしれないよ，というエラーです。こういったエラーの対処法は手順4で解説するので，ひとまず置いておきましょう。
+エラーの内容は，「 `client.user` がnullかもしれないよ」というエラーです。こういったエラーの対処法は手順4で解説するので，ひとまず置いておきましょう。
 
-エラーが発生したものの，トランスパイル自体は実行されています。その証拠として `build/main.js` がありますね。
+エラーが発生したものの，トランスコンパイル自体は実行されています。その証拠として `build/main.js` がありますね。
 
 botを起動します。
 
@@ -201,13 +201,13 @@ botがオンラインになったら，`!ping` と打ってみてください。
 
 ## null/undefinedに対処する
 
-TypeScriptはトランスパイラから見て，null/undefined(nullishと言います)になる値に対して実行時ではなく，トランスパイル時にエラーを出すようになっています。
+TypeScriptはトランスコンパイラから見て，null/undefined(nullishと言います)になる値に対して**実行時ではなく，トランスコンパイル時にエラーを出すようになっています**。
 
-先程のエラーは`client.user`がnullかもしれない，というエラーでした。
+先程のエラーは「 `client.user` がnullかもしれない」というエラーでした。
 
-botにログインする前にreadyイベントが発火された場合，`client.user`はnullを返します。
+botにログインする前にreadyイベントが発火された場合，`client.user`は**nullを返します**。
 
-もちろん，null型はログイン中Botのユーザー名を示すtagプロパティを持たないので，このままでは実行時にエラーになってしまいます。
+もちろん，**null型はログイン中Botのユーザー名を示すtagプロパティを持たない**ので，このままでは実行時に**エラーになってしまいます**。
 
 ということで，`client.user`がnullishで無いことを保証しなければなりません。
 
@@ -239,7 +239,7 @@ https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Optiona
 
 どちらかのように対処すれば，赤波線が消えたはずです。
 
-もう一度トランスパイルしてみましょう。何も表示されなければOKです。
+もう一度トランスコンパイルしてみましょう。何も表示されなければOKです。
 
 ## 参考にさせていただいた記事・サイト
 
