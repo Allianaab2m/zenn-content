@@ -28,7 +28,7 @@ DiscordのBotをTypeScriptで開発する記事が少なくて難儀したので
 | Discord.js | v13.3.1 |
 | Visual Studio Code | v1.62.3 |
 
-エディタは好きなものを使っても構いませんが，**Visual Studio CodeはTypeScript補完に関する機能が非常に強力**[^1]なので，TypeScriptを書く際にはVisual Studio Codeをオススメします。
+エディタは好きなものを使っても構いませんが，Visual Studio CodeはTypeScript補完に関する機能が**非常に強力**[^1]なので，TypeScriptを書く際にはVisual Studio Codeをオススメします。
 
 ## 手順
 
@@ -166,7 +166,7 @@ client.login(process.env.TOKEN)
 npm run compile
 ```
 
-```bash:トランスパイルを実行した結果
+```bash:トランスコンパイルを実行した結果
 src/main.ts:12:17 - error TS2531: Object is possibly 'null'.
 
 12     console.log(client.user.tag)
@@ -249,4 +249,4 @@ https://book.yyts.org/
 
 ---
 
-[^1]: というか，私は補完機能目当てでTypeScript使ってるまであります。~~paramとかわからん…~~
+[^1]: ちなみに，私は補完機能目当てでTypeScript使ってるまであります。~~paramとかわからん…~~
