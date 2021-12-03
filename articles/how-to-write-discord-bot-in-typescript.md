@@ -43,7 +43,7 @@ DiscordのBotをTypeScriptで開発する記事が少なくて難儀したので
 
 ```bash
 npm init -y
-npm install --save-dev typescript eslint
+npm install --save-dev typescript ts-node eslint
 npm install discord.js dotenv
 ```
 
