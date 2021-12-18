@@ -100,7 +100,7 @@ npx eslint --init
 | What format do you want your config file to be in?(configファイルはどのよう形式で保存しますか？) | JavaScript |
 | Would you like to install then now with npm?(npmを使用して今必要なパッケージをインストールしますか？) | Yes |
 
-また，**Visual Stuido Codeの場合はESLint拡張機能をインストールしておきましょう**。
+また，**Visual Studio Codeの場合はESLint拡張機能をインストールしておきましょう**。
 
 https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 
