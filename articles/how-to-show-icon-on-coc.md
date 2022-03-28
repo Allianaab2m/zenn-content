@@ -3,7 +3,7 @@ title: "Neovim(Coc.nvim)の補完ウィンドウにアイコンを表示する"
 emoji: "👌"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Neovim"]
-published: false
+published: true
 ---
 
 日本語の情報が無かったので，メモ書きレベルですが記事にします。もっといい方法を知っている人がいれば教えてください。
