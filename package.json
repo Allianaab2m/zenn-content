@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/Allianaab2m/zenn-content#readme",
   "dependencies": {
-    "zenn-cli": "^0.1.98"
+    "zenn-cli": "^0.1.107"
   }
 }
