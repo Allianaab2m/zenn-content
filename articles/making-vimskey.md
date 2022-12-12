@@ -6,7 +6,7 @@ topics: ["Vim", "Neovim", "Misskey", "TypeScript"]
 published: false
 ---
 
-:::
+:::message
 この記事はVim Advent Calendar 2022(2)の記事です。
 https://qiita.com/advent-calendar/2022/vim
 :::
@@ -21,8 +21,6 @@ MisskeyはOSSで開発されている分散型SNSです。
 Mastodonなどで採用されているActivityPubプロトコルを実装したインスタンス[^1]とは相互にやり取りができる一方，Discord, SlackライクなリアクションなどのMisskey独自の機能が実装されています。
 
 [^1]: インスタンスとは，FedibirdやPawoo，Misskey.ioなどのサーバー単位のことを指します。分散型SNSでは，所属するサーバーごとに提供される機能や規約，サーバーの存在目的などが若干異なります。
-
-(Placeholder)
 
 昨今のTwitter情勢が不安定であることから移行している人が多く，かくいう私も移民の一人で，一ヶ月ほど前に引っ越してきたばかりです。
 
