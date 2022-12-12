@@ -3,7 +3,7 @@ title: "VimでMisskeyが見れるプラグインを作ってる話"
 emoji: "💬"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Vim", "Neovim", "Misskey", "TypeScript"]
-published: false
+published: true
 ---
 
 :::message
