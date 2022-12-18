@@ -3,7 +3,7 @@ title: "NextcloudにTailscale経由でアクセス出来ない時の対処法"
 emoji: "🌟"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nextcloud", "docker", "tailscale"]
-published: false
+published: true
 ---
 
 最近[Tailscale](https://tailscale.com)というサービスを知りました。
