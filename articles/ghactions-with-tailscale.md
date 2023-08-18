@@ -36,7 +36,7 @@ https://login.tailscale.com/admin/settings/oauth にアクセスし，Devicesの
 Writeにチェックを入れると，先程作成したタグを選択するよう求められるので，選択します．
 Generate Clientを押し，Client IDとClient Secretを控えておきます．
 
-次にWorkflowを作成します．今回は`main`ブランチに`src`フォルダを更新するコミットがされた場合にActionを実行するようにしています．scriptなどの内容は適宜読み替えてください．
+次にWorkflowを作成します．今回は`main`ブランチにpushされた場合にActionを実行するようにしています．scriptなどの内容は適宜読み替えてください．
 
 ```yml:.github/workflows/action.yml
 on:
