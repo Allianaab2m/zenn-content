@@ -1,41 +1,47 @@
 ---
-title: "DiscordBotをTypeScriptで書くチュートリアル"
+title: "DiscordBotをTypeScriptで書くチュートリアル(v13)"
 emoji: "💬"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Discord", "TypeScript"]
 published: false
 ---
 
+:::message
+2025-08-10 追記: この記事の内容は古くなっています．最新の内容は Discord.js 公式 Docs などを参考にしてください．
+https://discord.js.org/docs/packages/discord.js/14.21.0
+:::
+
 ## 前置き
 
-DiscordのBotをTypeScriptで開発する記事が少なくて難儀したので，自分なりに記事を書いてみることにしました。
+Discord の Bot を TypeScript で開発する記事が少なくて難儀したので，自分なりに記事を書いてみることにしました。
 
 こういった記事を書くのは初めてなので，拙い文章ではありますが，誰かの助けになれば幸いです。
 
 ## 対象読者
 
-- Discord.jsを使用したBot開発の経験がある人
+- Discord.js を使用した Bot 開発の経験がある人
 
-今回の記事の主軸はTypeScriptを使ってBot開発をするという点にあるため，**Bot開発やNode.jsなどに関する基本的な説明はところどころ端折っています**。
+今回の記事の主軸は TypeScript を使って Bot 開発をするという点にあるため，**Bot 開発や Node.js などに関する基本的な説明はところどころ端折っています**。
 
 予めご了承ください。
 
 ## 環境
-|環境|バージョン|
-| --- | --- |
-| Node.js | v16.13.0 |
-| TypeScript | v4.5.2 |
-| Discord.js | v13.3.1 |
-| Visual Studio Code | v1.62.3 |
 
-エディタは好きなものを使っても構いませんが，Visual Studio CodeはTypeScript補完に関する機能が**非常に強力**[^1]なので，TypeScriptを書く際にはVisual Studio Codeをオススメします。
+| 環境               | バージョン |
+| ------------------ | ---------- |
+| Node.js            | v16.13.0   |
+| TypeScript         | v4.5.2     |
+| Discord.js         | v13.3.1    |
+| Visual Studio Code | v1.62.3    |
+
+エディタは好きなものを使っても構いませんが，Visual Studio Code は TypeScript 補完に関する機能が**非常に強力**[^1]なので，TypeScript を書く際には Visual Studio Code をオススメします。
 
 ## 手順
 
 1. 必要なパッケージをインストールする
 2. 初期設定
 3. 実際にコードを書く
-4. null/undefinedに対処する
+4. null/undefined に対処する
 
 ## 必要なパッケージをインストールする
 
@@ -78,7 +84,7 @@ npx tsc --init
 }
 ```
 
-これはトランスコンパイルを行ったときに生成されたJavaScriptコードを出力するディレクトリを指定しています。
+これはトランスコンパイルを行ったときに生成された JavaScript コードを出力するディレクトリを指定しています。
 
 ### ESLint
 
@@ -88,25 +94,25 @@ npx eslint --init
 
 対話式のセットアップウィザードが始まります。矢印キーなどを使って以下のように指定してください。
 
-|聞かれる内容|答える内容|
-| --- | --- |
-| How would you like to use ESLint? (ESLintをどのように使いますか？) | To check syntax, find problens, and enforce code style |
-| What type of modules does your project use?(どのタイプのモジュールを使用しますか？) | JavaScript modules (import/export) |
-| Which framework does your project use?(フレームワークを使用しますか？) | None of these |
-| Does your project use TypeScript?(TypeScriptを使用しますか？) | Yes |
-| Where does your code run?(コードをどの環境で実行しますか？) | Browser, Node(aキーを押すと両方選択される) |
-| How would you like to define a style for your project?(コードのスタイルはどのように定義しますか？) | Use a popular style guide |
-| Which style guide do you want to follow?(どのスタイルガイドに従いますか？) | Standard |
-| What format do you want your config file to be in?(configファイルはどのよう形式で保存しますか？) | JavaScript |
-| Would you like to install then now with npm?(npmを使用して今必要なパッケージをインストールしますか？) | Yes |
+| 聞かれる内容                                                                                           | 答える内容                                             |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------ |
+| How would you like to use ESLint? (ESLint をどのように使いますか？)                                    | To check syntax, find problens, and enforce code style |
+| What type of modules does your project use?(どのタイプのモジュールを使用しますか？)                    | JavaScript modules (import/export)                     |
+| Which framework does your project use?(フレームワークを使用しますか？)                                 | None of these                                          |
+| Does your project use TypeScript?(TypeScript を使用しますか？)                                         | Yes                                                    |
+| Where does your code run?(コードをどの環境で実行しますか？)                                            | Browser, Node(a キーを押すと両方選択される)            |
+| How would you like to define a style for your project?(コードのスタイルはどのように定義しますか？)     | Use a popular style guide                              |
+| Which style guide do you want to follow?(どのスタイルガイドに従いますか？)                             | Standard                                               |
+| What format do you want your config file to be in?(config ファイルはどのよう形式で保存しますか？)      | JavaScript                                             |
+| Would you like to install then now with npm?(npm を使用して今必要なパッケージをインストールしますか？) | Yes                                                    |
 
-また，**Visual Studio Codeの場合はESLint拡張機能をインストールしておきましょう**。
+また，**Visual Studio Code の場合は ESLint 拡張機能をインストールしておきましょう**。
 
 https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 
 ### package.json
 
-package.jsonにnpmスクリプトを指定します。
+package.json に npm スクリプトを指定します。
 
 ```json
 "scripts": {
@@ -116,7 +122,7 @@ package.jsonにnpmスクリプトを指定します。
 }
 ```
 
-最後に，現在のディレクトリの中に `src`と `build`フォルダ，そして  `.env`ファイルを新しく作ってください。以下のような状態になっているでしょうか。
+最後に，現在のディレクトリの中に `src`と `build`フォルダ，そして `.env`ファイルを新しく作ってください。以下のような状態になっているでしょうか。
 
 ```bash:現在のディレクトリの様子
 📁 node_modules
@@ -175,11 +181,11 @@ src/main.ts:12:17 - error TS2531: Object is possibly 'null'.
 Found 1 error.
 ```
 
-エラーの内容は，「 `client.user` がnullかもしれないよ」というエラーです。こういったエラーの対処法は手順4で解説するので，ひとまず置いておきましょう。
+エラーの内容は，「 `client.user` が null かもしれないよ」というエラーです。こういったエラーの対処法は手順 4 で解説するので，ひとまず置いておきましょう。
 
 エラーが発生したものの，トランスコンパイル自体は実行されています。その証拠として `build/main.js` がありますね。
 
-botを起動します。
+bot を起動します。
 
 `.env` ファイルに
 
@@ -195,51 +201,51 @@ npm run start
 
 を実行しましょう。
 
-botがオンラインになったら，`!ping` と打ってみてください。返答があれば成功です。
+bot がオンラインになったら，`!ping` と打ってみてください。返答があれば成功です。
 
 ![](https://storage.googleapis.com/zenn-user-upload/558fc665fba2-20211123.png)
 
-## null/undefinedに対処する
+## null/undefined に対処する
 
-TypeScriptはトランスコンパイラから見て，null/undefined(nullishと言います)になる値に対して**実行時ではなく，トランスコンパイル時にエラーを出すようになっています**。
+TypeScript はトランスコンパイラから見て，null/undefined(nullish と言います)になる値に対して**実行時ではなく，トランスコンパイル時にエラーを出すようになっています**。
 
-先程のエラーは「 `client.user` がnullかもしれない」というエラーでした。
+先程のエラーは「 `client.user` が null かもしれない」というエラーでした。
 
-botにログインする前にreadyイベントが発火された場合，`client.user`は**nullを返します**。
+bot にログインする前に ready イベントが発火された場合，`client.user`は**null を返します**。
 
-もちろん，**null型はログイン中Botのユーザー名を示すtagプロパティを持たない**ので，このままでは実行時に**エラーになってしまいます**。
+もちろん，**null 型はログイン中 Bot のユーザー名を示す tag プロパティを持たない**ので，このままでは実行時に**エラーになってしまいます**。
 
-ということで，`client.user`がnullishで無いことを保証しなければなりません。
+ということで，`client.user`が nullish で無いことを保証しなければなりません。
 
 そのような場合は，以下のように対処します。
 
 ```tsx
-client.once('ready', () => {
-    console.log('Ready!')
-    if (client.user) {
-        console.log(client.user.tag)
-    }
-})
+client.once("ready", () => {
+  console.log("Ready!");
+  if (client.user) {
+    console.log(client.user.tag);
+  }
+});
 
 // or
 
-client.once('ready', () => {
-    console.log('Ready!')
-    console.log(client.user?.tag)
-})
+client.once("ready", () => {
+  console.log("Ready!");
+  console.log(client.user?.tag);
+});
 ```
 
 上の例は理解しやすいと思います。
 
-nullishでない値はTrueを返す性質を利用し，nullでないことを保証しています。
+nullish でない値は True を返す性質を利用し，null でないことを保証しています。
 
-下の例は，オプショナルチェーンと呼ばれるもので，アクセス元がnullishであっても，エラーを出すことなく`undefined`を返すようになります。
+下の例は，オプショナルチェーンと呼ばれるもので，アクセス元が nullish であっても，エラーを出すことなく`undefined`を返すようになります。
 
 https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Optional_chaining
 
 どちらかのように対処すれば，赤波線が消えたはずです。
 
-もう一度トランスコンパイルしてみましょう。何も表示されなければOKです。
+もう一度トランスコンパイルしてみましょう。何も表示されなければ OK です。
 
 ## 参考にさせていただいた記事・サイト
 
@@ -249,4 +255,4 @@ https://book.yyts.org/
 
 ---
 
-[^1]: ちなみに，私は補完機能目当てでTypeScript使ってるまであります。~~paramとかわからん…~~
+[^1]: ちなみに，私は補完機能目当てで TypeScript 使ってるまであります。~~param とかわからん…~~
