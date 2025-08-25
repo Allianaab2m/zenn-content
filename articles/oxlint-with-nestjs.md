@@ -3,7 +3,7 @@ title: "NestJSでOxlintを使う"
 emoji: "⚓️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nestjs", "oxlint"]
-published: false
+published: true
 publication_name: emobi_tech
 ---
 
