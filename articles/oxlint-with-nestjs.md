@@ -1,6 +1,6 @@
 ---
 title: "NestJSでOxlintを使う"
-emoji: "📚"
+emoji: "⚓️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nestjs", "oxlint"]
 published: false
